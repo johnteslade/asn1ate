@@ -406,8 +406,13 @@ def _translate_value(value):
 
 # Simplistic command-line driver
 def main(args):
-    with open(args[0]) as f:
-        asn1def = f.read()
+   
+    # Open file (or read from stdin)
+    if len(args) == 0:
+        asn1def = sys.stdin.read()
+    else: 
+        with open(args[0]) as f:
+            asn1def = f.read()
 
     parse_tree = parser.parse_asn1(asn1def)
 
